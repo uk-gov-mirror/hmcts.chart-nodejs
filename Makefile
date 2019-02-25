@@ -25,7 +25,7 @@ setup: ## Configures your Azure ACR with sandbox credentials for testing purpose
 	az account set --subscription ${ACR_SUBSCRIPTION}
 	az configure --defaults acr=${ACR}
 	az acr helm repo add
-	az aks get-credentials --resource-group ${AKS_RESOURCE_GROUP} --name ${AKS_CLUSTER}
+	az aks get-credentials --overwrite-existing --resource-group ${AKS_RESOURCE_GROUP} --name ${AKS_CLUSTER} 
 
 clean: ## Removes the installed chart
 	-helm delete --purge ${RELEASE}

@@ -1,6 +1,8 @@
 FROM node:10-slim
-ENV NODE_PORT 3000
-COPY package* ./
-RUN npm install
-COPY . .
-CMD ["npm", "start"]
+COPY package.json .
+RUN yarn install
+COPY yarn.lock .
+COPY index.js .
+ADD config "/config"
+ENV NODE_CONFIG_DIR="/config"
+CMD ["yarn", "start"]
